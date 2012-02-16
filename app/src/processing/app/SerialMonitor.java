@@ -104,4 +104,34 @@ public class SerialMonitor extends AbstractMonitor {
       serial = null;
     }
   }
+
+  public void pauseMonitor() {
+    if (serial != null) {
+      super.pauseMonitor();
+      try {
+        serial.dispose();
+      } catch (Exception e) {
+        System.err.println(e);
+      }
+      serial = null;
+    }
+  }
+
+  public void unPauseMonitor() {
+    if (serial == null) {
+      super.unPauseMonitor();
+    }
+  }
+
+  /*
+  public void message(final String s) {
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        textArea.append(s);
+        if (autoscrollBox.isSelected()) {
+        	textArea.setCaretPosition(textArea.getDocument().getLength());
+        }
+      }});
+  }
+  */
 }

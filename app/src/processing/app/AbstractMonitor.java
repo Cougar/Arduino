@@ -187,6 +187,31 @@ public abstract class AbstractMonitor extends JFrame implements MessageConsumer 
     });
   }
 
+  public void pauseMonitor() {
+    message("*** PAUSED ****\r\n");
+    textArea.setEnabled(false);
+    textField.setEnabled(false);
+    sendButton.setEnabled(false);
+    serialRates.setEnabled(false);
+    lineEndings.setEnabled(false);
+    autoscrollBox.setEnabled(false);
+  }
+
+  public void unPauseMonitor() {
+    try {
+      open();
+      message("*** UNPAUSED ****\r\n");
+      textArea.setEnabled(true);
+      textField.setEnabled(true);
+      sendButton.setEnabled(true);
+      serialRates.setEnabled(true);
+      lineEndings.setEnabled(true);
+      autoscrollBox.setEnabled(true);
+    } catch (Exception e) {
+      System.err.println(e);
+    }
+  }
+
   public boolean requiresAuthorization() {
     return false;
   }
